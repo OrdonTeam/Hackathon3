@@ -1,8 +1,8 @@
-package com.ordonteam;
+package com.ordonteam.hackathon3
 
 import groovy.transform.Canonical
-import groovy.transform.CompileStatic;
-import spock.lang.Specification;
+import groovy.transform.CompileStatic
+import spock.lang.Specification
 
 @CompileStatic
 class Groovy2_4Test extends Specification {

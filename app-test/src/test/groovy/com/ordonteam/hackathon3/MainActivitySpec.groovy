@@ -1,4 +1,4 @@
-package com.ordonteam
+package com.ordonteam.hackathon3
 
 import org.robolectric.Robolectric
 import pl.polidea.robospock.RoboSpecification

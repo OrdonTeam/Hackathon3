@@ -1,15 +1,13 @@
-package com.ordonteam
+package com.ordonteam.hackathon3
 
-import android.app.Activity
 import android.os.Bundle
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class MainActivity extends Activity {
+class MainActivity extends LoginActivity {
 
     @InjectView(R.id.textView)
     TextView text
@@ -22,5 +20,20 @@ class MainActivity extends Activity {
         SwissKnife.inject(this)
 
         text.setText('Hello Groovy')
+    }
+
+    @Override
+    void onConnected(Bundle bundle) {
+        text.setText('Connected')
+    }
+
+    @Override
+    void onConnectFailed(int errorCode) {
+        text.setText("onConnectFailed Code = $errorCode")
+    }
+
+    @Override
+    void onNotSignedIn(int errorCode) {
+        text.setText("onNotSignedIn Code = $errorCode")
     }
 }
