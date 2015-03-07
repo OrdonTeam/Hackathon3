@@ -16,10 +16,6 @@ class Fluppet extends BaseGameObject {
     }
 
     @Override
-    Paint getPaint() {
-        return paint
-    }
-    @Override
     MoveDirection move() {
         return MoveDirection.RIGHT
     }

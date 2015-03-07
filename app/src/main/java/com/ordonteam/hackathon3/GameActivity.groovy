@@ -7,6 +7,7 @@ import com.arasthel.swissknife.annotations.InjectView
 import com.ordonteam.hackathon3.controller.GameController
 import com.ordonteam.hackathon3.model.*
 import com.ordonteam.hackathon3.view.GameView
+import com.ordonteam.hackathon3.view.PlayerPadView
 import com.ordonteam.hackathon3.view.common.Dimension
 import groovy.transform.CompileStatic
 
@@ -17,6 +18,8 @@ class GameActivity extends Activity {
 
     @InjectView(R.id.game_view)
     GameView gameView
+    @InjectView(R.id.player_pad_view)
+    PlayerPadView playerPadView
     private GameController gameController
     private GameObjects objects = new GameObjects()
 
@@ -31,6 +34,7 @@ class GameActivity extends Activity {
         objects.add(new Fluppet(xy(3,3)))
         objects.add(new Toxifera(xy(4,5)))
         objects.add(new Wall(xy(6,6)))
+        objects.add(new UserBot(xy(7,7),playerPadView))
 
         gameView.setGameObjects(objects)
 

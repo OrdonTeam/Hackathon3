@@ -23,6 +23,7 @@
     </LinearLayout>
 
     <com.ordonteam.hackathon3.view.PlayerPadView
+        android:id="@+id/player_pad_view"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"

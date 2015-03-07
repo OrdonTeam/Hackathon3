@@ -14,9 +14,4 @@ class Wall extends BaseGameObject {
     Wall(Dimension location) {
         super(location)
     }
-
-    @Override
-    Paint getPaint() {
-        return paint
-    }
 }

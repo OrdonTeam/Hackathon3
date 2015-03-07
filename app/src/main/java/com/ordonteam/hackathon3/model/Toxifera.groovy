@@ -14,9 +14,4 @@ class Toxifera extends BaseGameObject {
     Toxifera(Dimension location) {
         super(location)
     }
-
-    @Override
-    Paint getPaint() {
-        return paint
-    }
 }

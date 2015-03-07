@@ -2,21 +2,24 @@ package com.ordonteam.hackathon3.model
 
 import android.graphics.Color
 import android.graphics.Paint
+import com.ordonteam.hackathon3.view.PlayerPadView
 import com.ordonteam.hackathon3.view.common.Dimension
 import com.ordonteam.hackathon3.view.utils.GamePaint
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class Snorg extends BaseGameObject {
+class UserBot extends BaseGameObject{
 
-    Paint paint = GamePaint.forColor(Color.RED)
+    Paint paint = GamePaint.forColor(Color.CYAN)
+    private PlayerPadView playerPadView
 
-    Snorg(Dimension location) {
+    UserBot(Dimension location, PlayerPadView playerPadView) {
         super(location)
+        this.playerPadView = playerPadView
     }
 
     @Override
     MoveDirection move() {
-        return MoveDirection.RIGHT
+        return playerPadView.getCurrentInclination()
     }
 }

@@ -14,9 +14,4 @@ class Zugar extends BaseGameObject {
     Zugar(Dimension location) {
         super(location)
     }
-
-    @Override
-    Paint getPaint() {
-        return paint
-    }
 }
