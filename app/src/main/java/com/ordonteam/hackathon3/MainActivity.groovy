@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
+import com.google.android.gms.games.Games
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import groovy.transform.CompileStatic
 
@@ -17,9 +18,7 @@ class MainActivity extends RoomActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-
         SwissKnife.inject(this)
-
         text.setText('Hello Groovy')
     }
 
@@ -37,6 +36,7 @@ class MainActivity extends RoomActivity {
     @Override
     void startGame() {
         text.setText('startGame')
+        Games.RealTimeMultiplayer.sendUnreliableMessageToOthers(client,'message'.bytes,roomId)
     }
 
     @Override

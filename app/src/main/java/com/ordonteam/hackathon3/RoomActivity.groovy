@@ -2,6 +2,7 @@ package com.ordonteam.hackathon3
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.gms.games.Games
 import com.google.android.gms.games.GamesStatusCodes
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
@@ -17,6 +18,7 @@ import static com.google.android.gms.games.GamesActivityResultCodes.RESULT_LEFT_
 abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener {
 
     public static final int RC_WAITING_ROOM = 9007
+    protected String roomId
 
     @Override
     void onConnected(Bundle bundle) {
@@ -41,6 +43,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
         if (statusCode != GamesStatusCodes.STATUS_OK) {
             onRoomCreationFailure(statusCode)
         } else {
+            roomId = room.roomId
             Intent i = Games.RealTimeMultiplayer.getWaitingRoomIntent(client, room, Integer.MAX_VALUE);
             startActivityForResult(i, RC_WAITING_ROOM);
         }
@@ -48,7 +51,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
 
     @Override
     void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
-
+        Log.e("onRealTimeMessageReceived","onRealTimeMessageReceived")
     }
 
     abstract void onRoomCreationFailure(int statusCode)
