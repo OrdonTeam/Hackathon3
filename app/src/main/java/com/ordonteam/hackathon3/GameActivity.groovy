@@ -2,6 +2,7 @@ package com.ordonteam.hackathon3
 
 import android.app.Activity
 import android.os.Bundle
+import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.ordonteam.hackathon3.model.*
 import com.ordonteam.hackathon3.view.GameView
@@ -17,6 +18,7 @@ class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game_activity)
+        SwissKnife.inject(this)
 
         GameObjects objects = new GameObjects()
         objects.add(new Zugar())
