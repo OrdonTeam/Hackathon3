@@ -1,11 +1,11 @@
 package com.ordonteam.hackathon3
 
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
-import com.google.android.gms.games.Games
-import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
+import com.arasthel.swissknife.annotations.OnClick
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -13,6 +13,8 @@ class MainActivity extends RoomActivity {
 
     @InjectView(R.id.textView)
     TextView text
+    @InjectView(R.id.editText)
+    EditText editText
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,16 @@ class MainActivity extends RoomActivity {
     @Override
     void startGame() {
         text.setText('startGame')
-        Games.RealTimeMultiplayer.sendUnreliableMessageToOthers(client,'message'.bytes,roomId)
+    }
+
+    @OnClick(R.id.send)
+    public void send(){
+        sendUnreliableMessageToOthers(editText.text.toString().bytes)
+    }
+
+    @Override
+    void newRealTimeMessage(byte[] bytes) {
+        text.setText(new String(bytes))
     }
 
     @Override
