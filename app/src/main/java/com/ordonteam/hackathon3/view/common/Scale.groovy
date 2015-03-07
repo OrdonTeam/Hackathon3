@@ -10,6 +10,11 @@ class Scale {
     final float x
     final float y
 
+    Scale(float x, float y) {
+        this.x = x
+        this.y = y
+    }
+
     Scale(Dimension screenDimension, Dimension drawableDimension){
         x = drawableDimension.width / screenDimension.width
         y = drawableDimension.height / screenDimension.height

@@ -33,6 +33,6 @@ class GameView extends LinearLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas)
-        gameObjects?.drawAll(new ScaledCanvas(canvas, null))
+        gameObjects?.drawAll(new ScaledCanvas(canvas, new Scale(20,20)))
     }
 }
