@@ -7,7 +7,7 @@ import com.arasthel.swissknife.annotations.InjectView
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class MainActivity extends LoginActivity {
+class MainActivity extends RoomActivity {
 
     @InjectView(R.id.textView)
     TextView text
@@ -24,7 +24,18 @@ class MainActivity extends LoginActivity {
 
     @Override
     void onConnected(Bundle bundle) {
+        super.onConnected(bundle)
         text.setText('Connected')
+    }
+
+    @Override
+    void onRoomCreationFailure(int statusCode) {
+        text.setText('onRoomCreationFailure')
+    }
+
+    @Override
+    void startGame() {
+        text.setText('startGame')
     }
 
     @Override
