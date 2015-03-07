@@ -2,7 +2,6 @@ package com.ordonteam.hackathon3
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.games.Games
@@ -27,7 +26,7 @@ abstract class LoginActivity extends Activity implements GoogleApiClient.Connect
                     .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                     .build();
         }
-        if(!client.isConnected() && !client.isConnecting()){
+        if (!client.isConnected() && !client.isConnecting()) {
             client.connect()
         }
     }

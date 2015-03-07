@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class GameView extends LinearLayout{
+class GameView extends LinearLayout {
     GameView(Context context) {
         super(context)
     }

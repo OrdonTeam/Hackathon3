@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class ScoreView extends LinearLayout{
+class ScoreView extends LinearLayout {
     ScoreView(Context context) {
         super(context)
     }

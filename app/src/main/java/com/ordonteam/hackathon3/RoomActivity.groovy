@@ -12,7 +12,7 @@ import groovy.transform.CompileStatic
 import static com.google.android.gms.games.GamesActivityResultCodes.RESULT_LEFT_ROOM
 
 @CompileStatic
-abstract class RoomActivity extends LoginActivity implements RoomUpdateListener{
+abstract class RoomActivity extends LoginActivity implements RoomUpdateListener {
 
     public static final int RC_WAITING_ROOM = 9007
 
@@ -49,9 +49,9 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener{
     @Override
     protected void onActivityResult(int requestCode, int responseCode, Intent data) {
         if (requestCode == RC_WAITING_ROOM) {
-            if(responseCode == RESULT_OK){
+            if (responseCode == RESULT_OK) {
                 startGame()
-            }else if(responseCode in [RESULT_CANCELED , RESULT_LEFT_ROOM]){
+            } else if (responseCode in [RESULT_CANCELED, RESULT_LEFT_ROOM]) {
                 //Games.RealTimeMultiplayer.leave(client, null, mRoomId);
             }
         } else {

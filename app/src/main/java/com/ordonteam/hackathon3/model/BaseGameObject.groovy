@@ -6,5 +6,5 @@ import groovy.transform.CompileStatic
 @CompileStatic
 abstract class BaseGameObject implements GameDrawable {
 
-    void move(){}
+    void move() {}
 }
