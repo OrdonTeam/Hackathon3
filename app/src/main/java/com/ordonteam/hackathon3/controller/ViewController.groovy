@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.controller
 
+import android.graphics.Canvas
 import com.ordonteam.hackathon3.model.GameObjects
 import groovy.transform.CompileStatic
 
@@ -11,7 +12,7 @@ class ViewController {
         this.gameObjects = gameObjects
     }
 
-    void drawAll() {
-        gameObjects.drawAll()
+    void drawAll(Canvas canvas) {
+        gameObjects.drawAll(canvas)
     }
 }
