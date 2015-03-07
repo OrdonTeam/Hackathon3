@@ -25,6 +25,7 @@ class GameView extends LinearLayout {
 
     void setGameObjects(GameObjects gameObjects) {
         this.gameObjects = gameObjects
+        invalidate()
     }
 
     @Override
