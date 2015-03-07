@@ -43,10 +43,14 @@ class GameController {
 
     void onResume() {
         thread = new Thread({
-            while (true) {
-                moveAll()
-                Log.e("move","all")
-                Thread.sleep(1000)
+            try{
+                while (true) {
+                    moveAll()
+                    Log.e("move","all")
+                    Thread.sleep(1000)
+                }
+            }catch (InterruptedException ex){
+                //ok, ok, do nothing :)
             }
         })
         thread.start()
