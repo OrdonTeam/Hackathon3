@@ -8,12 +8,6 @@ import groovy.transform.CompileStatic
 class GameObjects {
     Set<BaseGameObject> gameObjects = new HashSet<>()
 
-    void moveAll() {
-        gameObjects.each {
-            it.move()
-        }
-    }
-
     void drawAll(ScaledCanvas canvas) {
         gameObjects.each {
             it.draw(canvas)
