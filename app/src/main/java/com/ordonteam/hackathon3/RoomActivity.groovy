@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import com.google.android.gms.games.Games
 import com.google.android.gms.games.GamesStatusCodes
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceivedListener
 import com.google.android.gms.games.multiplayer.realtime.Room
 import com.google.android.gms.games.multiplayer.realtime.RoomConfig
 import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener
@@ -12,7 +14,7 @@ import groovy.transform.CompileStatic
 import static com.google.android.gms.games.GamesActivityResultCodes.RESULT_LEFT_ROOM
 
 @CompileStatic
-abstract class RoomActivity extends LoginActivity implements RoomUpdateListener {
+abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener {
 
     public static final int RC_WAITING_ROOM = 9007
 
@@ -20,7 +22,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener 
     void onConnected(Bundle bundle) {
         Bundle am = RoomConfig.createAutoMatchCriteria(1, 1, 0);
 
-        RoomConfig roomConfig = RoomConfig.builder(this).setAutoMatchCriteria(am).build();
+        RoomConfig roomConfig = RoomConfig.builder(this).setMessageReceivedListener(this).setAutoMatchCriteria(am).build();
 
         Games.RealTimeMultiplayer.create(client, roomConfig);
     }
@@ -42,6 +44,11 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener 
             Intent i = Games.RealTimeMultiplayer.getWaitingRoomIntent(client, room, Integer.MAX_VALUE);
             startActivityForResult(i, RC_WAITING_ROOM);
         }
+    }
+
+    @Override
+    void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
+
     }
 
     abstract void onRoomCreationFailure(int statusCode)

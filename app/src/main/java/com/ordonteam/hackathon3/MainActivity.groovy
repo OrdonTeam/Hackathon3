@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import groovy.transform.CompileStatic
 
 @CompileStatic
