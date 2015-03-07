@@ -12,6 +12,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class GameView extends LinearLayout {
     private GameObjects gameObjects
+    private GroovyLock lock = new GroovyLock()
 
     GameView(Context context) {
         super(context)
@@ -25,14 +26,18 @@ class GameView extends LinearLayout {
         super(context, attrs, defStyle)
     }
 
-    void setGameObjects(GameObjects gameObjects) {
-        this.gameObjects = gameObjects
-        invalidate()
+    void updateGameObjects(GameObjects gameObjects) {
+        lock.withLock {
+            this.gameObjects = gameObjects
+        }
+        postInvalidate()
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas)
-        gameObjects?.drawAll(new ScaledCanvas(canvas, new Scale(20,20)))
+        lock.withLock {
+            gameObjects?.drawAll(new ScaledCanvas(canvas, new Scale(20, 20)))
+        }
     }
 }

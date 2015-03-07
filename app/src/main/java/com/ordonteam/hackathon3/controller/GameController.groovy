@@ -15,20 +15,20 @@ import static com.ordonteam.hackathon3.utils.ThreadUtil.startThread
 @CompileStatic
 class GameController {
     GameObjects gameObjects
-    private View view
     private Thread thread
+    private ViewController viewController
 
     GameController(GameObjects gameObjects) {
         this.gameObjects = gameObjects
     }
 
-    void moveAll() {
-        gameObjects.moveAll()
-        view?.postInvalidate()
+    void setViewController(ViewController viewController) {
+        this.viewController = viewController
     }
 
-    void setView(View view) {
-        this.view = view
+    void moveAll() {
+        gameObjects = gameObjects.moveAll()
+        viewController.newObjects(gameObjects)
     }
 
     void onResume() {
