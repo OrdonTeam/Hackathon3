@@ -1,10 +1,10 @@
 package com.ordonteam.hackathon3.view.common
 
-import android.graphics.drawable.Drawable
+import com.ordonteam.hackathon3.view.GameDrawable
 import groovy.transform.CompileStatic
 
 @CompileStatic
-public interface Dimensionable extends Drawable {
+public interface DimensionAble extends GameDrawable {
 
     public Dimension getDimension()
 }
