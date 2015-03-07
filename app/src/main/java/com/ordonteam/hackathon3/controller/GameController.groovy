@@ -1,34 +1,32 @@
 package com.ordonteam.hackathon3.controller
 
 import android.util.Log
-import android.view.View
-import com.ordonteam.hackathon3.model.BaseGameObject
 import com.ordonteam.hackathon3.model.GameObjects
-import com.ordonteam.hackathon3.model.MoveDirection
-import com.ordonteam.hackathon3.utils.ThreadUtil
-import com.ordonteam.hackathon3.view.common.Dimension
+import com.ordonteam.hackathon3.view.GroovyLock
 import groovy.transform.CompileStatic
 
 import static com.ordonteam.hackathon3.utils.ThreadUtil.startInteruptableThread
-import static com.ordonteam.hackathon3.utils.ThreadUtil.startThread
 
 @CompileStatic
 class GameController {
     GameObjects gameObjects
     private Thread thread
-    private ViewController viewController
+    private GameObjectsDispatcher dispatcher
+    final GroovyLock lock = new GroovyLock()
 
     GameController(GameObjects gameObjects) {
         this.gameObjects = gameObjects
     }
 
-    void setViewController(ViewController viewController) {
-        this.viewController = viewController
+    void setDispather(GameObjectsDispatcher dispatcher){
+        this.dispatcher = dispatcher
     }
 
     void moveAll() {
-        gameObjects = gameObjects.moveAll()
-        viewController.newObjects(gameObjects)
+        lock.withLock {
+            gameObjects = gameObjects.moveAll()
+        }
+        dispatcher.fromGameController(gameObjects)
     }
 
     void onResume() {
@@ -43,5 +41,11 @@ class GameController {
 
     void onPause() {
         thread.interrupt()
+    }
+
+    void updateGameObjects(GameObjects gameObjects){
+        lock.withLock {
+            this.gameObjects = gameObjects
+        }
     }
 }

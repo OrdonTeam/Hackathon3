@@ -28,6 +28,7 @@ class GameObjects {
     }
 
     GameObjects moveAll() {
+
         Set<BaseGameObject> collect = gameObjects.collect { BaseGameObject gameObject ->
             MoveDirection direction = gameObject.move()
             BaseGameObject find = gameObjects.find {

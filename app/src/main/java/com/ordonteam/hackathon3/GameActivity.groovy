@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.ordonteam.hackathon3.controller.GameController
+import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
+import com.ordonteam.hackathon3.controller.NetworkController
 import com.ordonteam.hackathon3.controller.ViewController
 import com.ordonteam.hackathon3.model.*
 import com.ordonteam.hackathon3.view.GameView
@@ -35,12 +37,22 @@ class GameActivity extends Activity {
                 new Wall(xy(6, 6)), new UserBot(xy(7, 7), playerPadView)
         ] as Set)
 
+
         gameView.updateGameObjects(objects)
 
         viewController = new ViewController(objects)
         viewController.setView(gameView)
         gameController = new GameController(objects)
-        gameController.setViewController(viewController)
+        GameObjectsDispatcher dispatcher = createDispatcher()
+        gameController.setDispather(dispatcher)
+    }
+
+    private GameObjectsDispatcher createDispatcher() {
+        GameObjectsDispatcher dispatcher = new GameObjectsDispatcher()
+        dispatcher.gameController = gameController
+        dispatcher.viewController = viewController
+        dispatcher.networkController = new NetworkController()
+        return dispatcher
     }
 
     @Override

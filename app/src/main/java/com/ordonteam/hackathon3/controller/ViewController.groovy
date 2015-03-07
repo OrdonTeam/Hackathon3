@@ -14,7 +14,6 @@ class ViewController {
     }
 
     void newObjects(GameObjects gameObjects) {
-        //TODO: Some logic if should update
         gameView.updateGameObjects(gameObjects)
     }
 
