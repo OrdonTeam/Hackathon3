@@ -6,17 +6,18 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class GameObjectsDispatcher {
 
-    GameController gameController
-    ViewController viewController
-    NetworkController networkController
+    GameObjectsConsumer gameController
+    GameObjectsConsumer viewController
+    GameObjectsConsumer networkController
 
-    void fromNetwork(GameObjects gameObjects){
-        gameController.gameObjects = gameObjects
-        viewController.gameObjects = gameObjects
+    void fromNetwork(GameObjects gameObjects) {
+        gameController.newObjects(gameObjects)
+        viewController.newObjects(gameObjects)
     }
 
     void fromGameController(GameObjects gameObjects){
         viewController.newObjects(gameObjects)
         networkController.newObjects(gameObjects)
     }
+
 }

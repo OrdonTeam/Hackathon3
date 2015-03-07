@@ -4,9 +4,8 @@ import com.ordonteam.hackathon3.model.GameObjects
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class NetworkController implements GameObjectsConsumer{
+interface GameObjectsConsumer {
 
-    void newObjects(GameObjects gameObjects) {
+    void newObjects(GameObjects gameObjects)
 
-    }
 }

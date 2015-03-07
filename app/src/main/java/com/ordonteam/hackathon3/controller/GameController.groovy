@@ -8,7 +8,7 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackathon3.utils.ThreadUtil.startInteruptableThread
 
 @CompileStatic
-class GameController {
+class GameController implements GameObjectsConsumer{
     GameObjects gameObjects
     private Thread thread
     private GameObjectsDispatcher dispatcher
@@ -43,7 +43,7 @@ class GameController {
         thread.interrupt()
     }
 
-    void updateGameObjects(GameObjects gameObjects){
+    void newObjects(GameObjects gameObjects){
         lock.withLock {
             this.gameObjects = gameObjects
         }

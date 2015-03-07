@@ -5,7 +5,7 @@ import com.ordonteam.hackathon3.view.GameView
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class ViewController {
+class ViewController implements GameObjectsConsumer{
     GameObjects gameObjects
     private GameView gameView
 
