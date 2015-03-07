@@ -22,4 +22,9 @@ class UserBot extends BaseGameObject{
     MoveDirection move() {
         return playerPadView.getCurrentInclination()
     }
+
+    @Override
+    BaseGameObject withNewLocation(MoveDirection moveDirection) {
+        return new UserBot(location.to(moveDirection),playerPadView)
+    }
 }

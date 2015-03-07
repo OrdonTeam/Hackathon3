@@ -19,4 +19,9 @@ class Fluppet extends BaseGameObject {
     MoveDirection move() {
         return MoveDirection.RIGHT
     }
+
+    @Override
+    BaseGameObject withNewLocation(MoveDirection moveDirection) {
+        return new Fluppet(location.to(moveDirection))
+    }
 }

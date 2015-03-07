@@ -14,4 +14,9 @@ class Zugar extends BaseGameObject {
     Zugar(Dimension location) {
         super(location)
     }
+
+    @Override
+    BaseGameObject withNewLocation(MoveDirection moveDirection) {
+        return new Zugar(location.to(moveDirection))
+    }
 }

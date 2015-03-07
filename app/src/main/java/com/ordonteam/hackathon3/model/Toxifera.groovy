@@ -14,4 +14,9 @@ class Toxifera extends BaseGameObject {
     Toxifera(Dimension location) {
         super(location)
     }
+
+    @Override
+    BaseGameObject withNewLocation(MoveDirection moveDirection) {
+        return new Toxifera(location.to(moveDirection))
+    }
 }

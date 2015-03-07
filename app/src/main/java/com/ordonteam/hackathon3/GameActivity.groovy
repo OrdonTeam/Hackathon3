@@ -21,7 +21,7 @@ class GameActivity extends Activity {
     @InjectView(R.id.player_pad_view)
     PlayerPadView playerPadView
     private GameController gameController
-    private GameObjects objects = new GameObjects()
+    private GameObjects objects
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,10 @@ class GameActivity extends Activity {
         setContentView(R.layout.game_activity)
         SwissKnife.inject(this)
 
-        objects.add(new Zugar(xy(1,1)))
-        objects.add(new Snorg(xy(2,2)))
-        objects.add(new Fluppet(xy(3,3)))
-        objects.add(new Toxifera(xy(4,5)))
-        objects.add(new Wall(xy(6,6)))
-        objects.add(new UserBot(xy(7,7),playerPadView))
+        objects = new GameObjects([
+                new Zugar(xy(1, 1)), new Snorg(xy(2, 2)), new Fluppet(xy(3, 3)), new Toxifera(xy(4, 5)),
+                new Wall(xy(6, 6)), new UserBot(xy(7, 7), playerPadView)
+        ] as Set)
 
         gameView.setGameObjects(objects)
 

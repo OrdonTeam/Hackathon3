@@ -14,4 +14,9 @@ class Wall extends BaseGameObject {
     Wall(Dimension location) {
         super(location)
     }
+
+    @Override
+    BaseGameObject withNewLocation(MoveDirection moveDirection) {
+        return new Wall(location.to(moveDirection))
+    }
 }

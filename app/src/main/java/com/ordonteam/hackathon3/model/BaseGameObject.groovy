@@ -8,7 +8,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 abstract class BaseGameObject {
 
-    Dimension location
+    final Dimension location
 
     BaseGameObject(Dimension location) {
         this.location = location
@@ -22,9 +22,7 @@ abstract class BaseGameObject {
         canvas.drawRectangle(location,getPaint())
     }
 
-    void updateLocation(MoveDirection moveDirection){
-        location = location.to(moveDirection)
-    }
+    abstract BaseGameObject withNewLocation(MoveDirection moveDirection);
 
     abstract Paint getPaint()
 }

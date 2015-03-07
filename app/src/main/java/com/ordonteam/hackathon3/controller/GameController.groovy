@@ -19,22 +19,8 @@ class GameController {
     }
 
     void moveAll() {
-        gameObjects.gameObjects.each { BaseGameObject gameObject ->
-
-            MoveDirection direction = gameObject.move()
-            moveObject(gameObject.location.to(direction), {
-                gameObject.updateLocation(direction)
-            })
-        }
+        gameObjects.moveAll()
         view?.postInvalidate()
-    }
-
-    void moveObject(Dimension target, Closure move) {
-        BaseGameObject find = gameObjects.gameObjects.find {
-            it.location == target
-        }
-        if(!find)
-            move()
     }
 
     void setView(View view) {
