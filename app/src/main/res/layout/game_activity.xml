@@ -6,11 +6,11 @@
     <com.ordonteam.hackathon3.view.GameView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="@color/common_signin_btn_default_background"
+        android:background="@color/light_grey"
         android:layout_weight="4"/>
     <com.ordonteam.hackathon3.view.ScoreView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="@color/wallet_bright_foreground_holo_dark"
+        android:background="@color/dark_grey"
         android:layout_weight="1"/>
 </LinearLayout>
