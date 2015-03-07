@@ -1,12 +1,12 @@
 package com.ordonteam.hackathon3.model
 
-import android.graphics.Canvas
+import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic
 
 @CompileStatic
 class Toxifera extends BaseGameObject {
     @Override
-    void draw(Canvas canvas) {
+    void draw(ScaledCanvas canvas) {
 
     }
 }

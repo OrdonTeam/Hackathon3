@@ -5,6 +5,8 @@ import android.graphics.Canvas
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.ordonteam.hackathon3.model.GameObjects
+import com.ordonteam.hackathon3.view.common.Scale
+import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -31,6 +33,6 @@ class GameView extends LinearLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas)
-        gameObjects?.drawAll(canvas)
+        gameObjects?.drawAll(new ScaledCanvas(canvas, new Scale(1,1)))
     }
 }

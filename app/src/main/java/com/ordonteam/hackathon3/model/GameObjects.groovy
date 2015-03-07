@@ -1,6 +1,7 @@
 package com.ordonteam.hackathon3.model
 
 import android.graphics.Canvas
+import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -13,7 +14,7 @@ class GameObjects {
         }
     }
 
-    void drawAll(Canvas canvas) {
+    void drawAll(ScaledCanvas canvas) {
         gameObjects.each {
             it.draw(canvas)
         }

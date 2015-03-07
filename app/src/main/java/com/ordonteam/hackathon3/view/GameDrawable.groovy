@@ -1,7 +1,7 @@
 package com.ordonteam.hackathon3.view
 
-import android.graphics.Canvas
+import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 
 interface GameDrawable {
-    void draw(Canvas canvas)
+    void draw(ScaledCanvas canvas)
 }
