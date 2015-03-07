@@ -14,13 +14,17 @@ abstract class BaseGameObject {
         this.location = location
     }
 
-    MoveDirection move() {}
+    MoveDirection move() {
+        return MoveDirection.NOWHERE
+    }
     
     void draw(ScaledCanvas canvas) {
         canvas.drawRectangle(location,getPaint())
     }
 
-    void updateLocation(){}
+    void updateLocation(MoveDirection moveDirection){
+        location = location.to(moveDirection)
+    }
 
     abstract Paint getPaint()
 }

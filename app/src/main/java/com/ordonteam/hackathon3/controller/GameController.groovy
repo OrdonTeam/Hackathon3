@@ -6,7 +6,6 @@ import com.ordonteam.hackathon3.model.BaseGameObject
 import com.ordonteam.hackathon3.model.GameObjects
 import com.ordonteam.hackathon3.model.MoveDirection
 import com.ordonteam.hackathon3.view.common.Dimension
-import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -21,15 +20,21 @@ class GameController {
 
     void moveAll() {
         gameObjects.gameObjects.each { BaseGameObject gameObject ->
-            moveObject(gameObject.move(),gameObject.location) {
-                gameObject.updateLocation()
-            }
+
+            MoveDirection direction = gameObject.move()
+            moveObject(gameObject.location.to(direction), {
+                gameObject.updateLocation(direction)
+            })
         }
         view?.postInvalidate()
     }
 
-    void moveObject(MoveDirection moveDirection, Dimension location, Closure move) {
-        move()
+    void moveObject(Dimension target, Closure move) {
+        BaseGameObject find = gameObjects.gameObjects.find {
+            it.location == target
+        }
+        if(!find)
+            move()
     }
 
     void setView(View view) {

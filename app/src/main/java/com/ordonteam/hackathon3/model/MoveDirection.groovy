@@ -7,7 +7,8 @@ enum MoveDirection {
     UP(0,1),
     DOWN(0,-1),
     RIGHT(1,0),
-    LEFT(-1,0)
+    LEFT(-1,0),
+    NOWHERE(0,0)
 
     final int x
     final int y

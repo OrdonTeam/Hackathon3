@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.view.common
 
+import com.ordonteam.hackathon3.model.MoveDirection
 import groovy.transform.Canonical
 import groovy.transform.CompileStatic;
 
@@ -16,5 +17,9 @@ public class Dimension {
 
     static Dimension xy(int x, int y) {
         return new Dimension(x, y)
+    }
+
+    Dimension to(MoveDirection moveDirection) {
+        return new Dimension(width+moveDirection.x,height+moveDirection.y)
     }
 }
