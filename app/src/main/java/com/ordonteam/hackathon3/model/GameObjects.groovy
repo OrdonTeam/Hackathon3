@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.model
 
+import android.graphics.Canvas
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -12,9 +13,9 @@ class GameObjects {
         }
     }
 
-    void drawAll() {
+    void drawAll(Canvas canvas) {
         gameObjects.each {
-            it.draw()
+            it.draw(canvas)
         }
     }
 
