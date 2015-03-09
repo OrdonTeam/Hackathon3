@@ -19,4 +19,13 @@ class ThreadUtil {
             }
         })
     }
+
+    static void foreverOnceIn(int milis, Closure closure){
+        while (true){
+            long start = System.currentTimeMillis()
+            closure()
+            long duration = System.currentTimeMillis() - start
+            Thread.sleep(milis-duration)
+        }
+    }
 }
