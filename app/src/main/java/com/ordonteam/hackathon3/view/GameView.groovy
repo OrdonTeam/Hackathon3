@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import com.ordonteam.hackathon3.model.Board
 import com.ordonteam.hackathon3.model.GameObjects
 import com.ordonteam.hackathon3.view.common.Scale
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
@@ -13,6 +14,7 @@ import groovy.transform.CompileStatic
 class GameView extends LinearLayout {
     private GameObjects gameObjects
     private GroovyLock lock = new GroovyLock()
+    Board board
 
     GameView(Context context) {
         super(context)
@@ -36,8 +38,10 @@ class GameView extends LinearLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas)
+        ScaledCanvas scaledCanvas = new ScaledCanvas(canvas, new Scale(20, 20))
+        board?.draw(scaledCanvas)
         lock.withLock {
-            gameObjects?.drawAll(new ScaledCanvas(canvas, new Scale(20, 20)))
+            gameObjects?.drawAll(scaledCanvas)
         }
     }
 }

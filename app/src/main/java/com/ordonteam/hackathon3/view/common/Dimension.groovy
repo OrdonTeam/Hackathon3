@@ -15,6 +15,14 @@ public class Dimension {
         this.width = width
     }
 
+    int getX(){
+        return width
+    }
+
+    int getY(){
+        return height
+    }
+
     static Dimension xy(int x, int y) {
         return new Dimension(x, y)
     }

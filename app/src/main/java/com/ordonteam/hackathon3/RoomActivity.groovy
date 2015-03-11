@@ -68,7 +68,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
             if (responseCode == RESULT_OK) {
                 startGame()
             } else if (responseCode in [RESULT_CANCELED, RESULT_LEFT_ROOM]) {
-                //Games.RealTimeMultiplayer.leave(client, null, mRoomId);
+                Games.RealTimeMultiplayer.leave(client, null, roomId);
             }
         } else {
             super.onActivityResult(requestCode, responseCode, data)

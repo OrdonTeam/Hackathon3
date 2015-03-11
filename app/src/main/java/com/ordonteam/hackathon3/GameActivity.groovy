@@ -37,7 +37,7 @@ class GameActivity extends Activity {
                 new Wall(xy(6, 6)), new UserBot(xy(7, 7), playerPadView)
         ] as Set)
 
-
+        gameView.board = Board.generateBoard(xy(20,20))
         gameView.updateGameObjects(objects)
 
         viewController = new ViewController(objects)
