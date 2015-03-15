@@ -17,7 +17,7 @@ class ViewController implements GameObjectsConsumer{
         this.gameView = gameView
     }
 
-    void newBoard(Board board) {
-        gameView.board = board
+    void newBoard(Board newBoard) {
+        gameView.board = newBoard
     }
 }

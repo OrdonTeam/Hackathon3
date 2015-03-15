@@ -18,7 +18,7 @@ class GameActivity extends RoomActivity {
     GameView gameView
     @InjectView(R.id.player_pad_view)
     PlayerPadView playerPadView
-    private GameObjectsDispatcher dispatcher = new GameObjectsDispatcher()
+    private GameObjectsDispatcher dispatcher
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,8 @@ class GameActivity extends RoomActivity {
     }
 
     @Override
-    void startGame() {
+    void startGame(String myParticipantId) {
+        dispatcher = new GameObjectsDispatcher(myParticipantId)
         def board = Board.generateBoard(3)
         dispatcher.fromGameController(board)
     }

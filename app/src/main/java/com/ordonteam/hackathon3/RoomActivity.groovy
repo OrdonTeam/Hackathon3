@@ -59,7 +59,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     protected void onActivityResult(int requestCode, int responseCode, Intent data) {
         if (requestCode == RC_WAITING_ROOM) {
             if (responseCode == RESULT_OK) {
-                startGame()
+                startGame(Games.Players.getCurrentPlayerId(client))
             } else if (responseCode in [RESULT_CANCELED, RESULT_LEFT_ROOM]) {
                 Games.RealTimeMultiplayer.leave(client, null, roomId);
             }
@@ -68,7 +68,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
         }
     }
 
-    abstract void startGame()
+    abstract void startGame(String myParticipantId)
 
     @Override
     void onLeftRoom(int i, String s) {

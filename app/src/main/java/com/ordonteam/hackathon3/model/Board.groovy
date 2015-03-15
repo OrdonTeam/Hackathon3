@@ -42,6 +42,8 @@ class Board implements GameDrawable {
 
     @CompileDynamic
     static Board chooseBoard(Board firstBoard, Board secondBoard){
+        if(!firstBoard) return secondBoard
+        if(!secondBoard) return firstBoard
         return Collections.min([firstBoard,secondBoard], { Board b1, Board b2 ->
             return b1.hashCode() - b2.hashCode()
         })
