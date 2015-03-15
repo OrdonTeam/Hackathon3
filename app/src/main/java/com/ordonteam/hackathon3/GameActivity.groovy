@@ -7,7 +7,7 @@ import com.arasthel.swissknife.annotations.InjectView
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
 import com.ordonteam.hackathon3.model.Board
-import com.ordonteam.hackathon3.view.GameView
+import com.ordonteam.hackathon3.view.GameViewController
 import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
 
@@ -15,7 +15,7 @@ import groovy.transform.CompileStatic
 class GameActivity extends RoomActivity {
 
     @InjectView(R.id.game_view)
-    GameView gameView
+    GameViewController gameViewController
     @InjectView(R.id.player_pad_view)
     PlayerPadView playerPadView
     private GameObjectsDispatcher dispatcher
@@ -29,7 +29,7 @@ class GameActivity extends RoomActivity {
 
     @Override
     void startGame(String myParticipantId) {
-        dispatcher = new GameObjectsDispatcher(myParticipantId)
+        dispatcher = new GameObjectsDispatcher(myParticipantId, gameViewController)
         def board = Board.generateBoard(3)
         dispatcher.fromGameController(board)
     }
