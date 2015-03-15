@@ -11,13 +11,13 @@ class GameObjectsDispatcher {
     GameObjectsConsumer networkController
 
     void fromNetwork(GameObjects gameObjects) {
-        gameController.newObjects(gameObjects)
-        viewController.newObjects(gameObjects)
+        gameController.newObjects('participantId', gameObjects)
+        viewController.newObjects('participantId', gameObjects)
     }
 
     void fromGameController(GameObjects gameObjects){
-        viewController.newObjects(gameObjects)
-        networkController.newObjects(gameObjects)
+        viewController.newObjects('participantId', gameObjects)
+        networkController.newObjects('participantId', gameObjects)
     }
 
 }

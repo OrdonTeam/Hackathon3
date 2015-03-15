@@ -38,7 +38,7 @@ class GameActivity extends Activity {
         ] as Set)
 
         gameView.board = Board.generateBoard(xy(20,20))
-        gameView.updateGameObjects(objects)
+        gameView.updateGameObjects('participantId',objects)
 
         viewController = new ViewController(objects)
         viewController.setView(gameView)

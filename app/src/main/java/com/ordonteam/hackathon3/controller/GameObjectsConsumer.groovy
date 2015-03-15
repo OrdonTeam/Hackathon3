@@ -6,6 +6,6 @@ import groovy.transform.CompileStatic
 @CompileStatic
 interface GameObjectsConsumer {
 
-    void newObjects(GameObjects gameObjects)
+    void newObjects(String participantId, GameObjects gameObjects)
 
 }

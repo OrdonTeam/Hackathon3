@@ -10,10 +10,11 @@ import com.ordonteam.hackathon3.view.common.Scale
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic
 
+import java.util.concurrent.ConcurrentHashMap
+
 @CompileStatic
 class GameView extends LinearLayout {
-    private GameObjects gameObjects
-    private GroovyLock lock = new GroovyLock()
+    private Map<String, GameObjects> gameObjectsMap = new ConcurrentHashMap<>()
     Board board
 
     GameView(Context context) {
@@ -28,10 +29,8 @@ class GameView extends LinearLayout {
         super(context, attrs, defStyle)
     }
 
-    void updateGameObjects(GameObjects gameObjects) {
-        lock.withLock {
-            this.gameObjects = gameObjects
-        }
+    void updateGameObjects(String participantId, GameObjects gameObjects) {
+        gameObjectsMap.put(participantId, gameObjects)
         postInvalidate()
     }
 
@@ -40,8 +39,8 @@ class GameView extends LinearLayout {
         super.onDraw(canvas)
         ScaledCanvas scaledCanvas = new ScaledCanvas(canvas, new Scale(20, 20))
         board?.draw(scaledCanvas)
-        lock.withLock {
-            gameObjects?.drawAll(scaledCanvas)
+        gameObjectsMap.values().each {
+            it.drawAll(scaledCanvas)
         }
     }
 }

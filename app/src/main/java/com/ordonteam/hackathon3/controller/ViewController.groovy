@@ -13,8 +13,8 @@ class ViewController implements GameObjectsConsumer{
         this.gameObjects = gameObjects
     }
 
-    void newObjects(GameObjects gameObjects) {
-        gameView.updateGameObjects(gameObjects)
+    void newObjects(String participantId, GameObjects gameObjects) {
+        gameView.updateGameObjects(participantId, gameObjects)
     }
 
     void setView(GameView gameView) {

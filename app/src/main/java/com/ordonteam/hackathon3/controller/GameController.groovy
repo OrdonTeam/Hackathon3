@@ -43,7 +43,7 @@ class GameController implements GameObjectsConsumer{
         thread.interrupt()
     }
 
-    void newObjects(GameObjects gameObjects){
+    void newObjects(String participantId, GameObjects gameObjects){
         lock.withLock {
             this.gameObjects = gameObjects
         }
