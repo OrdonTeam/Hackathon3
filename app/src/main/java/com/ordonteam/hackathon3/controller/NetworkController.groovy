@@ -6,6 +6,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class NetworkController implements GameObjectsConsumer{
 
+    @Override
     void newObjects(String participantId, GameObjects gameObjects) {
 
     }

@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.arasthel.swissknife.annotations.OnClick
+import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -46,9 +47,10 @@ class MainActivity extends RoomActivity {
     }
 
     @Override
-    void newRealTimeMessage(byte[] bytes) {
-        text.setText(new String(bytes))
+    void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
+        text.setText("${realTimeMessage.senderParticipantId} said: ${new String(realTimeMessage.messageData)} to you")
     }
+
 
     @Override
     void onConnectFailed(int errorCode) {

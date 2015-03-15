@@ -53,13 +53,6 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
         Games.RealTimeMultiplayer.sendUnreliableMessageToOthers(client, bytes, roomId)
     }
 
-    @Override
-    void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
-        newRealTimeMessage(realTimeMessage.messageData)
-    }
-
-    abstract void newRealTimeMessage(byte[] bytes)
-
     abstract void onRoomCreationFailure(int statusCode)
 
     @Override
