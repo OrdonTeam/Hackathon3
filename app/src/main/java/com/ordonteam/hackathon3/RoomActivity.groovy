@@ -32,11 +32,13 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
 
     @Override
     void onRoomCreated(int statusCode, Room room) {
+        Log.i("OrdonTeam","onRoomCreated roomId: ${room.getRoomId()}")
         onCreationCallback(statusCode, room)
     }
 
     @Override
     void onJoinedRoom(int statusCode, Room room) {
+        Log.i("OrdonTeam","onJoinedRoom roomId: ${room.getRoomId()}")
         onCreationCallback(statusCode, room)
     }
 
@@ -45,12 +47,14 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
             onRoomCreationFailure(statusCode)
         } else {
             roomId = room.roomId
+            Log.i("OrdonTeam","onCreationCallback roomId: $roomId")
             Intent i = Games.RealTimeMultiplayer.getWaitingRoomIntent(client, room, Integer.MAX_VALUE);
             startActivityForResult(i, RC_WAITING_ROOM);
         }
     }
 
     int sendUnreliableMessageToOthers(byte[] bytes) {
+        Log.i("OrdonTeam","sendUnreliableMessageToOthers roomId: $roomId")
         Games.RealTimeMultiplayer.sendUnreliableMessageToOthers(client, bytes, roomId)
     }
 
@@ -78,6 +82,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
 
     @Override
     void onRoomConnected(int statusCode, Room room) {
+        Log.i("OrdonTeam","onRoomConnected roomId: ${room.getRoomId()}")
 
     }
 }
