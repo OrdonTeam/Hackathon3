@@ -14,10 +14,7 @@ class GameController implements GameObjectsConsumer{
     private Thread thread
     private GameObjectsDispatcher dispatcher
     final GroovyLock lock = new GroovyLock()
-
-    GameController(GameObjects gameObjects) {
-        this.gameObjects = gameObjects
-    }
+    Board board
 
     void setDispather(GameObjectsDispatcher dispatcher){
         this.dispatcher = dispatcher
@@ -52,6 +49,6 @@ class GameController implements GameObjectsConsumer{
 
     @Override
     void newBoard(Board board) {
-
+        this.board = board
     }
 }

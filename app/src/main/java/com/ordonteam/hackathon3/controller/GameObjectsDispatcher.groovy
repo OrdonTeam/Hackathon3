@@ -9,7 +9,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class GameObjectsDispatcher {
 
-    GameObjectsConsumer gameController
+    GameObjectsConsumer gameController = new GameController()
     GameObjectsConsumer gameViewController
     GameObjectsConsumer networkController
     Board board // Can be null but who cares
