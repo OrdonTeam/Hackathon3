@@ -9,10 +9,10 @@ import groovy.transform.CompileStatic
 import static Dimension.xy
 
 @CompileStatic
-@Canonical
 class Board implements GameDrawable, Serializable {
     static final long serialVersionUID = 42L
 
+    long hashCode
     Dimension size
     List<Wall> walls = new ArrayList<>()
 
@@ -40,6 +40,7 @@ class Board implements GameDrawable, Serializable {
             board.walls.add(new Wall(xy(size.x - 1, y)))
         }
         board.walls.add(new Wall(xy(new Random().nextInt(size.x),new Random().nextInt(size.y))))
+        board.hashCode = new Random().nextLong()
         return board
     }
 
@@ -48,7 +49,7 @@ class Board implements GameDrawable, Serializable {
         if (!firstBoard) return secondBoard
         if (!secondBoard) return firstBoard
         return Collections.min([firstBoard, secondBoard], { Board b1, Board b2 ->
-            return b1.hashCode() - b2.hashCode()
+            return b1.hashCode - b2.hashCode
         })
     }
 }
