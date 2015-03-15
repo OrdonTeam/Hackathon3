@@ -9,6 +9,7 @@ import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceivedListener
 import com.google.android.gms.games.multiplayer.realtime.Room
 import com.google.android.gms.games.multiplayer.realtime.RoomConfig
+import com.google.android.gms.games.multiplayer.realtime.RoomStatusUpdateListener
 import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener
 import com.ordonteam.hackathon3.controller.MessageSender
 import groovy.transform.CompileStatic
@@ -16,7 +17,7 @@ import groovy.transform.CompileStatic
 import static com.google.android.gms.games.GamesActivityResultCodes.RESULT_LEFT_ROOM
 
 @CompileStatic
-abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, MessageSender {
+abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, MessageSender, RoomStatusUpdateListener {
 
     public static final int RC_WAITING_ROOM = 9007
     protected String roomId
@@ -25,7 +26,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     void onConnected(Bundle bundle) {
         Bundle am = RoomConfig.createAutoMatchCriteria(1, 1, 0);
 
-        RoomConfig roomConfig = RoomConfig.builder(this).setMessageReceivedListener(this).setAutoMatchCriteria(am).build();
+        RoomConfig roomConfig = RoomConfig.builder(this).setMessageReceivedListener(this).setRoomStatusUpdateListener(this).setAutoMatchCriteria(am).build();
 
         Games.RealTimeMultiplayer.create(client, roomConfig);
     }
@@ -83,6 +84,69 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     @Override
     void onRoomConnected(int statusCode, Room room) {
         Log.i("OrdonTeam","onRoomConnected roomId: ${room.getRoomId()}")
+
+    }
+
+
+    @Override
+    void onRoomConnecting(Room room) {
+
+    }
+
+    @Override
+    void onRoomAutoMatching(Room room) {
+
+    }
+
+    @Override
+    void onPeerInvitedToRoom(Room room, List<String> strings) {
+
+    }
+
+    @Override
+    void onPeerDeclined(Room room, List<String> strings) {
+
+    }
+
+    @Override
+    void onPeerJoined(Room room, List<String> strings) {
+
+    }
+
+    @Override
+    void onPeerLeft(Room room, List<String> strings) {
+
+    }
+
+    @Override
+    void onConnectedToRoom(Room room) {
+        // get room ID, participants and my ID:
+// print out the list of participants (for debug purposes)
+        Log.d("OrdonTeam", "OnConnected to Room ID: ${room.getRoomId()}");
+    }
+
+    @Override
+    void onDisconnectedFromRoom(Room room) {
+
+    }
+
+    @Override
+    void onPeersConnected(Room room, List<String> strings) {
+
+    }
+
+    @Override
+    void onPeersDisconnected(Room room, List<String> strings) {
+
+    }
+
+    @Override
+    void onP2PConnected(String s) {
+
+    }
+
+    @Override
+    void onP2PDisconnected(String s) {
 
     }
 }

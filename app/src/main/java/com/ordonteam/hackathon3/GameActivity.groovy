@@ -5,6 +5,7 @@ import android.util.Log
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
+import com.google.android.gms.games.multiplayer.realtime.Room
 import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
 import com.ordonteam.hackathon3.model.Board
 import com.ordonteam.hackathon3.view.GameViewController
@@ -56,5 +57,4 @@ class GameActivity extends RoomActivity {
         Log.e("OrdonTeam", "onNotSignedIn")
         finish()
     }
-
 }
