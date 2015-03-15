@@ -7,7 +7,8 @@ import com.ordonteam.hackathon3.view.utils.GamePaint
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class Fluppet extends BaseGameObject {
+class Fluppet extends BaseGameObject implements Serializable {
+    static final long serialVersionUID = 42L
 
     Paint paint = GamePaint.forColor(Color.BLUE)
 

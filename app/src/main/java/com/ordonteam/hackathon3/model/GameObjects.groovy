@@ -7,7 +7,9 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackathon3.view.common.Dimension.xy
 
 @CompileStatic
-class GameObjects {
+class GameObjects implements Serializable{
+    static final long serialVersionUID = 42L
+
     final int turn
     final Set<BaseGameObject> gameObjects
 

@@ -7,7 +7,8 @@ import com.ordonteam.hackathon3.view.utils.GamePaint
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class Toxifera extends BaseGameObject {
+class Toxifera extends BaseGameObject implements Serializable {
+    static final long serialVersionUID = 42L
 
     Paint paint = GamePaint.forColor(Color.YELLOW)
 

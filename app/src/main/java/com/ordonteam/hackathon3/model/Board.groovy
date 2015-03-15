@@ -9,7 +9,8 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackathon3.view.common.Dimension.xy
 
 @CompileStatic
-class Board implements GameDrawable {
+class Board implements GameDrawable, Serializable {
+    static final long serialVersionUID = 42L
 
     Dimension size
     List<Wall> walls = new ArrayList<>()
@@ -21,12 +22,12 @@ class Board implements GameDrawable {
         }
     }
 
-    @CompileDynamic//TODO: remove compile dynamic
     static Board generateBoard(int playerNumber) {
-        return generateBoard(Dimension.xy(20,20))
+        return generateBoard(Dimension.xy(20, 20))
     }
 
-    @CompileDynamic//TODO: remove compile dynamic
+//  TODO: remove compile dynamic
+    @CompileDynamic
     static Board generateBoard(Dimension size) {
         Board board = new Board(size: size)
         (0..<size.x).each { int x ->
@@ -41,10 +42,10 @@ class Board implements GameDrawable {
     }
 
     @CompileDynamic
-    static Board chooseBoard(Board firstBoard, Board secondBoard){
-        if(!firstBoard) return secondBoard
-        if(!secondBoard) return firstBoard
-        return Collections.min([firstBoard,secondBoard], { Board b1, Board b2 ->
+    static Board chooseBoard(Board firstBoard, Board secondBoard) {
+        if (!firstBoard) return secondBoard
+        if (!secondBoard) return firstBoard
+        return Collections.min([firstBoard, secondBoard], { Board b1, Board b2 ->
             return b1.hashCode() - b2.hashCode()
         })
     }
