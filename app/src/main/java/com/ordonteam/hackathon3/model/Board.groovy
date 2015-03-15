@@ -2,12 +2,14 @@ package com.ordonteam.hackathon3.model
 
 import com.ordonteam.hackathon3.view.GameDrawable
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
+import groovy.transform.Canonical
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 
 import static Dimension.xy
 
 @CompileStatic
+@Canonical
 class Board implements GameDrawable, Serializable {
     static final long serialVersionUID = 42L
 
