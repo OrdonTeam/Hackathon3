@@ -1,6 +1,7 @@
 package com.ordonteam.hackathon3.view
 
 import android.graphics.Canvas
+import android.util.Log
 import android.widget.LinearLayout
 import com.ordonteam.hackathon3.controller.GameObjectsConsumer
 import com.ordonteam.hackathon3.model.Board
@@ -34,6 +35,7 @@ class GameViewController extends LinearLayout implements GameObjectsConsumer {
         super.onDraw(canvas)
         ScaledCanvas scaledCanvas = new ScaledCanvas(canvas, new Scale(20, 20))
         board?.draw(scaledCanvas)
+        Log.e('Drawing board',"with hackCode = ${board?.hashCode}")
         gameObjectsMap.values().each {
             it.drawAll(scaledCanvas)
         }
