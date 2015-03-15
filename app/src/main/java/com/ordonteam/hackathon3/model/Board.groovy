@@ -3,6 +3,7 @@ package com.ordonteam.hackathon3.model
 import com.ordonteam.hackathon3.view.GameDrawable
 import com.ordonteam.hackathon3.view.common.Dimension
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
+import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 
 import static com.ordonteam.hackathon3.view.common.Dimension.xy
@@ -20,6 +21,7 @@ class Board implements GameDrawable {
         }
     }
 
+    @CompileDynamic//TODO: remove compile dynamic
     static Board generateBoard(Dimension size) {
         Board board = new Board(size: size)
         (0..<size.x).each { int x ->
@@ -31,5 +33,12 @@ class Board implements GameDrawable {
             board.walls.add(new Wall(xy(size.x - 1, y)))
         }
         return board
+    }
+
+    @CompileDynamic
+    static Board chooseBoard(Board firstBoard, Board secondBoard){
+        return Collections.min([firstBoard,secondBoard], { Board b1, Board b2 ->
+            return b1.hashCode() - b2.hashCode()
+        })
     }
 }
