@@ -1,20 +1,15 @@
 package com.ordonteam.hackathon3
 
-import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.google.android.gms.games.multiplayer.realtime.RealTimeMessage
-import com.ordonteam.hackathon3.controller.GameController
 import com.ordonteam.hackathon3.controller.GameObjectsDispatcher
-import com.ordonteam.hackathon3.controller.NetworkController
-import com.ordonteam.hackathon3.controller.ViewController
-import com.ordonteam.hackathon3.model.*
+import com.ordonteam.hackathon3.model.Board
 import com.ordonteam.hackathon3.view.GameView
 import com.ordonteam.hackathon3.view.PlayerPadView
 import groovy.transform.CompileStatic
-
-import static com.ordonteam.hackathon3.view.common.Dimension.xy
 
 @CompileStatic
 class GameActivity extends RoomActivity {
@@ -23,6 +18,7 @@ class GameActivity extends RoomActivity {
     GameView gameView
     @InjectView(R.id.player_pad_view)
     PlayerPadView playerPadView
+    private GameObjectsDispatcher dispatcher = new GameObjectsDispatcher()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +29,31 @@ class GameActivity extends RoomActivity {
 
     @Override
     void startGame() {
-        Board.generateBoard(3)
-    }
-
-    @Override
-    void onConnectFailed(int i) {
-
-    }
-
-    @Override
-    void onNotSignedIn(int errorCode) {
-
+        def board = Board.generateBoard(3)
+        dispatcher.fromGameController(board)
     }
 
     @Override
     void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
-
+        dispatcher.fromNetwork(realTimeMessage.senderParticipantId,realTimeMessage.messageData)
     }
 
     @Override
     void onRoomCreationFailure(int statusCode) {
+        Log.e("OrdonTeam", "onRoomCreationFailure")
         finish()
     }
+
+    @Override
+    void onConnectFailed(int i) {
+        Log.e("OrdonTeam", "OnConnectFailed")
+        finish()
+    }
+
+    @Override
+    void onNotSignedIn(int errorCode) {
+        Log.e("OrdonTeam", "onNotSignedIn")
+        finish()
+    }
+
 }

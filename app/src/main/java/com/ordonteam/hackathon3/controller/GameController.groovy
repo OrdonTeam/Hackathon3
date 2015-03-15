@@ -1,6 +1,7 @@
 package com.ordonteam.hackathon3.controller
 
 import android.util.Log
+import com.ordonteam.hackathon3.model.Board
 import com.ordonteam.hackathon3.model.GameObjects
 import com.ordonteam.hackathon3.view.GroovyLock
 import groovy.transform.CompileStatic
@@ -47,5 +48,10 @@ class GameController implements GameObjectsConsumer{
         lock.withLock {
             this.gameObjects = gameObjects
         }
+    }
+
+    @Override
+    void newBoard(Board board) {
+
     }
 }
