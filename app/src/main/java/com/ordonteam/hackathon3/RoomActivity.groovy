@@ -90,31 +90,37 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
 
     @Override
     void onRoomConnecting(Room room) {
+        Log.d("OrdonTeam", "onRoomConnecting to Room ID: ${room.getRoomId()}");
 
     }
 
     @Override
     void onRoomAutoMatching(Room room) {
+        Log.d("OrdonTeam", "onRoomAutoMatching to Room ID: ${room.getRoomId()}");
 
     }
 
     @Override
     void onPeerInvitedToRoom(Room room, List<String> strings) {
+        Log.d("OrdonTeam", "onPeerInvitedToRoom to Room ID: ${room.getRoomId()}");
 
     }
 
     @Override
     void onPeerDeclined(Room room, List<String> strings) {
+        Log.d("OrdonTeam", "onPeerDeclined to Room ID: ${room.getRoomId()}");
 
     }
 
     @Override
     void onPeerJoined(Room room, List<String> strings) {
+        Log.d("OrdonTeam", "onPeerJoined to Room ID: ${room.getRoomId()}");
 
     }
 
     @Override
     void onPeerLeft(Room room, List<String> strings) {
+        Log.d("OrdonTeam", "onPeerLeft to Room ID: ${room.getRoomId()}");
 
     }
 
@@ -122,21 +128,23 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
     void onConnectedToRoom(Room room) {
         // get room ID, participants and my ID:
 // print out the list of participants (for debug purposes)
-        Log.d("OrdonTeam", "OnConnected to Room ID: ${room.getRoomId()}");
+        Log.d("OrdonTeam", "onConnectedToRoom to Room ID: ${room.getRoomId()}");
     }
 
     @Override
     void onDisconnectedFromRoom(Room room) {
-
+        Log.d("OrdonTeam", "onDisconnectedFromRoom to Room ID: ${room.getRoomId()}");
     }
 
     @Override
     void onPeersConnected(Room room, List<String> strings) {
+        Log.d("OrdonTeam", "onPeersConnected to Room ID: ${room.getRoomId()}");
 
     }
 
     @Override
     void onPeersDisconnected(Room room, List<String> strings) {
+        Log.d("OrdonTeam", "onPeersDisconnected to Room ID: ${room.getRoomId()}");
 
     }
 
