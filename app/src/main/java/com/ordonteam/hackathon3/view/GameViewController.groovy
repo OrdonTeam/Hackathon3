@@ -21,6 +21,7 @@ class GameViewController extends LinearLayout implements GameObjectsConsumer {
     @Override
     void newBoard(Board board) {
         this.board = board
+        postInvalidate()
     }
 
     void newObjects(String participantId, GameObjects gameObjects) {

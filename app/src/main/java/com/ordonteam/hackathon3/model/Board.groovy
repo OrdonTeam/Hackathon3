@@ -37,6 +37,7 @@ class Board implements GameDrawable, Serializable {
             board.walls.add(new Wall(xy(0, y)))
             board.walls.add(new Wall(xy(size.x - 1, y)))
         }
+        board.walls.add(new Wall(xy(new Random().nextInt(size.x),new Random().nextInt(size.y))))
         return board
     }
 
