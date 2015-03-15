@@ -22,6 +22,11 @@ class Board implements GameDrawable {
     }
 
     @CompileDynamic//TODO: remove compile dynamic
+    static Board generateBoard(int playerNumber) {
+        return generateBoard(Dimension.xy(20,20))
+    }
+
+    @CompileDynamic//TODO: remove compile dynamic
     static Board generateBoard(Dimension size) {
         Board board = new Board(size: size)
         (0..<size.x).each { int x ->
