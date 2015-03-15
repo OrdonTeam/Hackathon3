@@ -8,8 +8,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Fluppet extends BaseGameObject implements Serializable {
     static final long serialVersionUID = 42L
-
-    Paint paint = GamePaint.forColor(Color.BLUE)
+    static final Paint paint = GamePaint.forColor(Color.BLUE)
 
     Fluppet(Dimension location) {
         super(location)
@@ -23,5 +22,10 @@ class Fluppet extends BaseGameObject implements Serializable {
     @Override
     BaseGameObject withNewLocation(MoveDirection moveDirection) {
         return new Fluppet(location.to(moveDirection))
+    }
+
+    @Override
+    Paint getPaint() {
+        return paint
     }
 }

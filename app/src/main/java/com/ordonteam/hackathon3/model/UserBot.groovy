@@ -9,8 +9,8 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class UserBot extends BaseGameObject implements Serializable {
     static final long serialVersionUID = 42L
+    static final Paint paint = GamePaint.forColor(Color.CYAN)
 
-    Paint paint = GamePaint.forColor(Color.CYAN)
     private transient PlayerPadView playerPadView
 
     UserBot(Dimension location, PlayerPadView playerPadView) {
@@ -26,5 +26,10 @@ class UserBot extends BaseGameObject implements Serializable {
     @Override
     BaseGameObject withNewLocation(MoveDirection moveDirection) {
         return new UserBot(location.to(moveDirection), playerPadView)
+    }
+
+    @Override
+    Paint getPaint(){
+        return paint
     }
 }

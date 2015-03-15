@@ -8,8 +8,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Snorg extends BaseGameObject implements Serializable {
     static final long serialVersionUID = 42L
-
-    Paint paint = GamePaint.forColor(Color.RED)
+    static final Paint paint = GamePaint.forColor(Color.RED)
 
     Snorg(Dimension location) {
         super(location)
@@ -23,5 +22,10 @@ class Snorg extends BaseGameObject implements Serializable {
     @Override
     BaseGameObject withNewLocation(MoveDirection moveDirection) {
         return new Snorg(location.to(moveDirection))
+    }
+
+    @Override
+    Paint getPaint() {
+        return paint
     }
 }

@@ -8,8 +8,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Toxifera extends BaseGameObject implements Serializable {
     static final long serialVersionUID = 42L
-
-    Paint paint = GamePaint.forColor(Color.YELLOW)
+    static final Paint paint = GamePaint.forColor(Color.YELLOW)
 
     Toxifera(Dimension location) {
         super(location)
@@ -18,5 +17,10 @@ class Toxifera extends BaseGameObject implements Serializable {
     @Override
     BaseGameObject withNewLocation(MoveDirection moveDirection) {
         return new Toxifera(location.to(moveDirection))
+    }
+
+    @Override
+    Paint getPaint() {
+        return paint
     }
 }

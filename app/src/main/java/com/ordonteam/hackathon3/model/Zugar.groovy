@@ -8,8 +8,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Zugar extends BaseGameObject implements Serializable {
     static final long serialVersionUID = 42L
-
-    Paint paint = GamePaint.forColor(Color.GREEN)
+    static final Paint paint = GamePaint.forColor(Color.GREEN)
 
     Zugar(Dimension location) {
         super(location)
@@ -18,5 +17,10 @@ class Zugar extends BaseGameObject implements Serializable {
     @Override
     BaseGameObject withNewLocation(MoveDirection moveDirection) {
         return new Zugar(location.to(moveDirection))
+    }
+
+    @Override
+    Paint getPaint(){
+        return paint
     }
 }
