@@ -11,13 +11,14 @@ class GameObjectsDispatcher {
 
     GameObjectsConsumer gameController
     GameObjectsConsumer gameViewController
-    GameObjectsConsumer networkController = new NetworkController()
+    GameObjectsConsumer networkController
     Board board // Can be null but who cares
     final String myParticipantId
 
-    GameObjectsDispatcher(String myParticipantId, GameViewController gameViewController) {
+    GameObjectsDispatcher(String myParticipantId, GameViewController gameViewController, MessageSender sender) {
         this.myParticipantId = myParticipantId
         this.gameViewController = gameViewController
+        this.networkController = new NetworkController(sender)
     }
 
     void fromGameController(Board newBoard){

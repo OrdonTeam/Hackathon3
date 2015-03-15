@@ -29,7 +29,7 @@ class GameActivity extends RoomActivity {
 
     @Override
     void startGame(String myParticipantId) {
-        dispatcher = new GameObjectsDispatcher(myParticipantId, gameViewController)
+        dispatcher = new GameObjectsDispatcher(myParticipantId, gameViewController,this)
         def board = Board.generateBoard(3)
         dispatcher.fromGameController(board)
     }

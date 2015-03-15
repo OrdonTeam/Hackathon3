@@ -10,12 +10,13 @@ import com.google.android.gms.games.multiplayer.realtime.RealTimeMessageReceived
 import com.google.android.gms.games.multiplayer.realtime.Room
 import com.google.android.gms.games.multiplayer.realtime.RoomConfig
 import com.google.android.gms.games.multiplayer.realtime.RoomUpdateListener
+import com.ordonteam.hackathon3.controller.MessageSender
 import groovy.transform.CompileStatic
 
 import static com.google.android.gms.games.GamesActivityResultCodes.RESULT_LEFT_ROOM
 
 @CompileStatic
-abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener {
+abstract class RoomActivity extends LoginActivity implements RoomUpdateListener, RealTimeMessageReceivedListener, MessageSender {
 
     public static final int RC_WAITING_ROOM = 9007
     protected String roomId
@@ -49,7 +50,7 @@ abstract class RoomActivity extends LoginActivity implements RoomUpdateListener,
         }
     }
 
-    protected int sendUnreliableMessageToOthers(byte[] bytes) {
+    int sendUnreliableMessageToOthers(byte[] bytes) {
         Games.RealTimeMultiplayer.sendUnreliableMessageToOthers(client, bytes, roomId)
     }
 
