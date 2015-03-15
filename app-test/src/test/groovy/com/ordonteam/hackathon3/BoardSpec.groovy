@@ -1,7 +1,7 @@
 package com.ordonteam.hackathon3
 
 import com.ordonteam.hackathon3.model.Board
-import com.ordonteam.hackathon3.view.common.Dimension
+import com.ordonteam.hackathon3.model.Dimension
 import pl.polidea.robospock.RoboSpecification
 
 class BoardSpec extends RoboSpecification{
