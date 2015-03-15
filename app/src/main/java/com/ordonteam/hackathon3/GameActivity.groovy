@@ -32,12 +32,9 @@ class GameActivity extends Activity {
         setContentView(R.layout.game_activity)
         SwissKnife.inject(this)
 
-        objects = new GameObjects([
-                new Zugar(xy(1, 1)), new Snorg(xy(2, 2)), new Fluppet(xy(3, 3)), new Toxifera(xy(4, 5)),
-                new Wall(xy(6, 6)), new UserBot(xy(7, 7), playerPadView)
-        ] as Set)
-
-        gameView.board = Board.generateBoard(xy(20,20))
+        Board board = Board.generateBoard(xy(20, 20))
+        gameView.board = board
+        objects = GameObjects.generateObjects(board, playerPadView)
         gameView.updateGameObjects('participantId',objects)
 
         viewController = new ViewController(objects)

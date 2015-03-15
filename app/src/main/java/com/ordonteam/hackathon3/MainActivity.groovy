@@ -42,7 +42,7 @@ class MainActivity extends RoomActivity {
     }
 
     @OnClick(R.id.send)
-    public void send(){
+    public void send() {
         sendUnreliableMessageToOthers(editText.text.toString().bytes)
     }
 
@@ -50,7 +50,6 @@ class MainActivity extends RoomActivity {
     void onRealTimeMessageReceived(RealTimeMessage realTimeMessage) {
         text.setText("${realTimeMessage.senderParticipantId} said: ${new String(realTimeMessage.messageData)} to you")
     }
-
 
     @Override
     void onConnectFailed(int errorCode) {
