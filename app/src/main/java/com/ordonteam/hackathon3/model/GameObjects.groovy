@@ -4,7 +4,7 @@ import com.ordonteam.hackathon3.view.PlayerPadView
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileStatic
 
-import static com.ordonteam.hackathon3.view.common.Dimension.xy
+import static Dimension.xy
 
 @CompileStatic
 class GameObjects implements Serializable{

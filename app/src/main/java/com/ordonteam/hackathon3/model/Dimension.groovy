@@ -1,12 +1,13 @@
-package com.ordonteam.hackathon3.view.common
+package com.ordonteam.hackathon3.model
 
-import com.ordonteam.hackathon3.model.MoveDirection
 import groovy.transform.Canonical
 import groovy.transform.CompileStatic;
 
 @CompileStatic
 @Canonical
-public class Dimension {
+public class Dimension implements Serializable {
+    static final long serialVersionUID = 42L
+
     final int width
     final int height
 

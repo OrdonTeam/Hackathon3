@@ -1,12 +1,11 @@
 package com.ordonteam.hackathon3.model
 
 import com.ordonteam.hackathon3.view.GameDrawable
-import com.ordonteam.hackathon3.view.common.Dimension
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 
-import static com.ordonteam.hackathon3.view.common.Dimension.xy
+import static Dimension.xy
 
 @CompileStatic
 class Board implements GameDrawable, Serializable {

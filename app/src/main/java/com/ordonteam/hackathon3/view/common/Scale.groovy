@@ -1,5 +1,6 @@
 package com.ordonteam.hackathon3.view.common
 
+import com.ordonteam.hackathon3.model.Dimension
 import groovy.transform.Canonical
 import groovy.transform.CompileStatic
 
