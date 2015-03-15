@@ -37,7 +37,7 @@ class MainActivity extends RoomActivity {
     }
 
     @Override
-    void startGame() {
+    void startGame(String myParticipantId) {
         text.setText('startGame')
     }
 
