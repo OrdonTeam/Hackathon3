@@ -7,7 +7,7 @@ import groovy.transform.CompileStatic
 import static Dimension.xy
 
 @CompileStatic
-class GameObjects implements Serializable{
+class GameObjects implements Serializable, Peristable {
     static final long serialVersionUID = 42L
 
     final int turn
@@ -55,4 +55,16 @@ class GameObjects implements Serializable{
         return new GameObjects(turn + 1, collect)
     }
 
+    byte[] persist() {
+        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+        byteOutputStream.withObjectOutputStream { ObjectOutputStream stream ->
+            stream.writeObject(this)
+        }
+        return byteOutputStream.toByteArray()
+    }
+
+    @Override
+    Peristable unpersist() {
+        return this
+    }
 }

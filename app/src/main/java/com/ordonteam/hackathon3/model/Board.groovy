@@ -1,20 +1,26 @@
 package com.ordonteam.hackathon3.model
-
 import com.ordonteam.hackathon3.view.GameDrawable
 import com.ordonteam.hackathon3.view.utils.ScaledCanvas
-import groovy.transform.Canonical
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 
-import static Dimension.xy
+import static com.ordonteam.hackathon3.model.Dimension.xy
 
 @CompileStatic
-class Board implements GameDrawable, Serializable {
+class Board implements GameDrawable, Serializable, Peristable {
     static final long serialVersionUID = 42L
 
     long hashCode
     Dimension size
-    List<Wall> walls = new ArrayList<>()
+    List<Wall> insideWalls = new ArrayList<>()
+    transient List<Wall> outsideWalls
+
+    List<Wall> getWalls(){
+        def list = []
+        list.addAll(outsideWalls)
+        list.addAll(insideWalls)
+        return list
+    }
 
     @Override
     void draw(ScaledCanvas canvas) {
@@ -24,24 +30,33 @@ class Board implements GameDrawable, Serializable {
     }
 
     static Board generateBoard(int playerNumber) {
-        return generateBoard(Dimension.xy(20, 20))
+        return generateBoard(xy(20, 20))
     }
 
 //  TODO: remove compile dynamic
     @CompileDynamic
     static Board generateBoard(Dimension size) {
         Board board = new Board(size: size)
-        (0..<size.x).each { int x ->
-            board.walls.add(new Wall(xy(x, 0)))
-            board.walls.add(new Wall(xy(x, size.y - 1)))
-        }
-        (1..<(size.y - 1)).each { int y ->
-            board.walls.add(new Wall(xy(0, y)))
-            board.walls.add(new Wall(xy(size.x - 1, y)))
-        }
-        board.walls.add(new Wall(xy(new Random().nextInt(size.x),new Random().nextInt(size.y))))
+        board.outsideWalls = generateOutsideWalls()
+        board.insideWalls.add(new Wall(xy(new Random().nextInt(size.x), new Random().nextInt(size.y))))
         board.hashCode = new Random().nextLong()
         return board
+    }
+
+    @CompileDynamic
+    private static List<Wall> generateOutsideWalls() {
+        def ySize = 20
+        def xSize = 20
+        List<Wall> outsideWalls = []
+        (0..<xSize).each { int x ->
+            outsideWalls.add(new Wall(xy(x, 0)))
+            outsideWalls.add(new Wall(xy(x, ySize - 1)))
+        }
+        (1..<(ySize - 1)).each { int y ->
+            outsideWalls.add(new Wall(xy(0, y)))
+            outsideWalls.add(new Wall(xy(xSize - 1, y)))
+        }
+        return outsideWalls
     }
 
     @CompileDynamic
@@ -49,5 +64,19 @@ class Board implements GameDrawable, Serializable {
         if (!firstBoard) return secondBoard
         if (!secondBoard) return firstBoard
         return firstBoard.hashCode > secondBoard.hashCode ? firstBoard : secondBoard
+    }
+
+    byte[] persist() {
+        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+        byteOutputStream.withObjectOutputStream { ObjectOutputStream stream ->
+            stream.writeObject(this)
+        }
+        return byteOutputStream.toByteArray()
+    }
+
+    @Override
+    Peristable unpersist() {
+        outsideWalls = generateOutsideWalls()
+        return this
     }
 }

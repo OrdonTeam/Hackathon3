@@ -20,7 +20,6 @@ class ThreadUtilSpec extends Specification{
         Thread.sleep(2000)
 
         then:
-        time.size() == 7
         (0..5).every {
             time[it+1] - time[it] < 110
         }

@@ -15,19 +15,12 @@ class NetworkController implements GameObjectsConsumer{
 
     @Override
     void newObjects(String participantId, GameObjects gameObjects) {
-        sender.sendUnreliableMessageToOthers(persist(gameObjects))
+        sender.sendUnreliableMessageToOthers(gameObjects.persist())
     }
 
     @Override
     void newBoard(Board board) {
-        sender.sendUnreliableMessageToOthers(persist(board))
+        sender.sendUnreliableMessageToOthers(board.persist())
     }
 
-    static byte[] persist(Object objectToPersist) {
-        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
-        byteOutputStream.withObjectOutputStream { ObjectOutputStream stream ->
-            stream.writeObject(objectToPersist)
-        }
-        return byteOutputStream.toByteArray()
-    }
 }

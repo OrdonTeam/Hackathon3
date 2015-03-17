@@ -2,6 +2,7 @@ package com.ordonteam.hackathon3.controller
 
 import com.ordonteam.hackathon3.model.Board
 import com.ordonteam.hackathon3.model.GameObjects
+import com.ordonteam.hackathon3.model.Peristable
 import com.ordonteam.hackathon3.view.GameViewController
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
@@ -34,9 +35,13 @@ class GameObjectsDispatcher {
 
     @CompileDynamic
     void fromNetwork(String participantId, byte[] bytes) {
+        fromNetwork(participantId, unpersist(bytes))
+    }
+
+    static Object unpersist(byte[] bytes) {
         new ByteArrayInputStream(bytes).withObjectInputStream { ObjectInputStream stream ->
-            def object = stream.readObject()
-            fromNetwork(participantId, object)
+            def peristable = stream.readObject() as Peristable
+            return peristable.unpersist()
         }
     }
 
